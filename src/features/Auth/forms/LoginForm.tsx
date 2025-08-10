@@ -18,7 +18,7 @@ export function LoginForm({
     } as LoginSchemaType,
     onSubmit: (values) => {
       console.log(values);
-      navigate({ to: "/app/" });
+      navigate({ to: "/app" });
     },
   });
 

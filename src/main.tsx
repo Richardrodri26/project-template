@@ -7,7 +7,6 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
-import { ThemeProvider } from './components/providers/theme-provider.tsx'
 import { Providers } from './components/providers/index.tsx'
 
 // Create a new router instance

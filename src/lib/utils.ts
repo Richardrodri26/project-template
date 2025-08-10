@@ -35,3 +35,12 @@ export function shallowEqual(a: any, b: any) {
 
   return true;
 }
+
+/**
+ * function than wait for some milliseconds
+ * @param {number} ms milliseconds to wait
+ * @returns
+ */
+export const sleep = (ms = 1000) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};

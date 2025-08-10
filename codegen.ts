@@ -1,7 +1,8 @@
 import { type CodegenConfig } from '@graphql-codegen/cli';
-import { loadEnv } from 'vite';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env' });
 
-const schema = loadEnv("production", process.cwd())["VITE_URL_BACKEND_API"] + "graphql";
+const schema = process.env.VITE_URL_BACKEND_API + 'graphql';
 
 const config: CodegenConfig = {
   schema,
@@ -10,9 +11,7 @@ const config: CodegenConfig = {
   generates: {
     './src/domain/graphql/index.ts': {
       plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
-      config: {
-        withHooks: true,
-      },
+      config: { withHooks: true },
     },
   },
 };

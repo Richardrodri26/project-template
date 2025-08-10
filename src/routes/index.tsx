@@ -7,6 +7,6 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-    <Navigate to='/login/' />
+    <Navigate to='/login' />
   )
 }

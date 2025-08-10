@@ -1,7 +1,7 @@
 // Aqui vas a implementar una mutation usando el fetcher, reactQuery y devolverlo
 
-import { appFetcher } from "@/domain/api/api.config";
-import { useMutation } from "@tanstack/react-query";
+// import { appFetcher } from "@/domain/api/api.config";
+// import { useMutation } from "@tanstack/react-query";
 
 // Ejemplo
 

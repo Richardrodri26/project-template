@@ -1,7 +1,83 @@
-query GetUser {
-  getUser {
+query Cards($orderBy: [FindCardOrderBy!], $where: FindCardWhere, $pagination: Pagination) {
+  Cards(orderBy: $orderBy, where: $where, pagination: $pagination) {
     id
-    name
-    email
+    createdAt
+    updatedAt
+    deletedAt
+    title
+    description
+    subTitle
+    colorPrincipal
+    colorSegundario
+    isActive
+    imageProfile {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      fileName
+      fileExtension
+      fileMode
+      fileMongoId
+      fileUrl
+      transformedFileUrl
+      url
+    }
+    cardsEmails {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      email
+      icono
+    }
+    cardsPhones {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      phone
+      icono
+    }
+    cardsWeb {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      web
+      icono
+    }
+    cardsSocial {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      url
+      typeSocial
+      icono
+    }
+    cardsAddress {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      websiteUrl
+      city
+      postalCode
+      country
+      region
+      streetAddress
+    }
+  }
+  CardsCount(orderBy: $orderBy, where: $where, pagination: $pagination) {
+    totalItems
+    itemsPerPage
+    totalPages
+    currentPage
   }
 }
