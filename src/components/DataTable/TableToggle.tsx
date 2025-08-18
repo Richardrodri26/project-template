@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils';
 import type { Column } from '@tanstack/react-table';
 import { AlignJustify, FilterIcon, FunnelX } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { DropdownMenuItem, DropdownMenuContent, DropdownMenu, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { useOrderTh } from '../DynamicTable/utilities/OrderComponent';
 import { Button } from '../ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
 //#region thead
 

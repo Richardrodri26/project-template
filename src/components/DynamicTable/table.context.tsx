@@ -31,6 +31,7 @@ type tableStateType<T = dataTable> = {
   isLoading: boolean;
   order?: string[];
   columnVisibility?: VisibilityState;
+  actionComponent?: (item: T) => ReactNode;
 };
 
 type dataTableProps<T = dataTable> = tableOptions<T> & {
@@ -43,6 +44,8 @@ type dataTableProps<T = dataTable> = tableOptions<T> & {
   enableMultiRowSelection?: boolean;
   leftPinningList?: Array<keyof T>;
   tableKey?: string;
+
+  actionComponent?: (item: T) => ReactNode;
 };
 
 export const { Provider, useSelectorContext: useTableContext } = createCustomerStore<tableStateType<dataTable>>({
@@ -59,7 +62,7 @@ export const { Provider, useSelectorContext: useTableContext } = createCustomerS
 
 /*------ context ------*/
 
-export function SsrTableProvider<T extends dataTable = dataTable>({ children, pagination = { pageIndex: 1, pageSize: 10 }, metaPagination = {}, enableMultiRowSelection = true, ...res }: dataTableProps<T>) {
+export function SsrTableProvider<T extends dataTable = dataTable>({ children, pagination = { pageIndex: 1, pageSize: 10 }, metaPagination = {}, enableMultiRowSelection = true, actionComponent, ...res }: dataTableProps<T>) {
   const tableKey = res.tableKey;
   const defFilters = res.filters ?? [];
   const defSorting = res.sorting ?? [];
@@ -69,7 +72,7 @@ export function SsrTableProvider<T extends dataTable = dataTable>({ children, pa
   const { filters, sorting, order, columnVisibility } = usePersistentTableState<T>(tableKey, { filters: defFilters, sorting: defSorting, order: defOrder, columnVisibility: defColumnVisibility });
 
   return (
-    <Provider defaultValue={{ sorting, filtersMenu: false, secundaryView: false, pagination, metaPagination, filters, enableMultiRowSelection, order, columnVisibility } as tableStateType<dataTable>}>
+    <Provider defaultValue={{ actionComponent, sorting, filtersMenu: false, secundaryView: false, pagination, metaPagination, filters, enableMultiRowSelection, order, columnVisibility } as tableStateType<dataTable>}>
       {children}
       <SsrUseCases {...res} />
     </Provider>

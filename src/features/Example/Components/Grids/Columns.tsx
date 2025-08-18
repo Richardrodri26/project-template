@@ -16,7 +16,7 @@ export const cardsColumns = [
     maxSize: 50,
   }),
   cardColumnHelper.accessor('description', {
-    id: 'description',
+    id: 'descripcion',
     meta: {
       columnLabel: 'Description',
       filterType: 'TextFilter',

@@ -9,12 +9,14 @@ export interface BaseDataItem {
 export interface CardViewProps<T extends BaseDataItem> {
   data: T[]
   fields: CardField[]
-  actions?: CardAction[]
   onCardClick?: (item: T) => void
   title?: (item: T) => string
   subtitle?: (item: T) => string
   emptyMessage?: string
-  loading?: boolean
+  loading?: boolean;
+
+  
+  actionComponent?: (item: T) => ReactNode;
 }
 
 export interface CardField {
@@ -64,7 +66,5 @@ export interface ResponsiveTableProps<TData, TValue> extends BaseDataItem {
   isLoading?: boolean;
   className?: string;
   containerClassName?: string;
-
-    cardFields: CardField[]
-  cardActions?: CardAction[]
+  actionComponent?: (item: any) => ReactNode;
 }

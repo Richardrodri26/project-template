@@ -10,7 +10,6 @@ export function ResponsiveTable<TData, TValue>({
   data = [],
   columns,
   cardFields,
-  cardActions = [],
   title,
   description,
   loading = false,
@@ -19,6 +18,7 @@ export function ResponsiveTable<TData, TValue>({
   cardSubtitle,
   emptyMessage,
   className = "",
+  actionComponent
 }: ResponsiveTableProps<TData, TValue>) {
   const isMobile = useMediaQuery("(max-width: 1024px)")
 
@@ -37,8 +37,8 @@ export function ResponsiveTable<TData, TValue>({
       {isMobile ? (
         <CardView
           data={data}
+          actionComponent={actionComponent}
           fields={cardFields}
-          actions={cardActions}
           onCardClick={onRowClick}
           title={cardTitle}
           subtitle={cardSubtitle}

@@ -11,17 +11,12 @@ export function extractCardFields<T extends BaseDataItem>(
       // Excluir columnas de acciones
       if (column.id === "actions" || column.id === "select") return false
 
-      // Si tiene configuración de cardField explícita
-      if (column.meta?.cardField) {
-        return column.meta.cardField.show !== false
-      }
-
       // Si showAllFields es true, incluir todas las columnas con accessorKey
-      return showAllFields && column.accessorKey
+      return showAllFields && column.id
     })
     .map((column): CardField => {
       const cardMeta = column.meta?.cardField
-      const accessorKey = column.accessorKey as string
+      const accessorKey = column.id as string
 
       // Obtener el label del header o usar el accessorKey
       let label = accessorKey

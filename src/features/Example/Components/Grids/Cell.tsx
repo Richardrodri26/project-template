@@ -3,6 +3,8 @@ import { useAlert } from "@/components/PromiseAlert";
 import type { Cards } from "@/domain/graphql";
 import { EditIcon } from "lucide-react";
 import { useState } from "react";
+import { ExampleModalForm } from "../Modals/ExampleFormModal";
+import { updateExampleSchema, type UpdateExampleSchemaType } from '../../schema';
 
 
 export const CardGridActions = ({ data }: { data: Cards }) => {
@@ -52,14 +54,10 @@ export const CardGridActions = ({ data }: { data: Cards }) => {
   //   }
   // };
 
-  // const defaultValues: Partial<updateAnsHolidaySchemaType> = {
-  //   // ...data,
-  //   dayCode: String(data.dayCode),
-  //   date: String(data.date),
-  //   id: data.id,
-  //   yearCode: String(data.yearCode),
-  //   reason: String(data.reason),
-  // };
+  const defaultValues: Partial<UpdateExampleSchemaType> = {
+    id: String(data.id),
+    name: String(data.description),
+  };
 
   return (
     <>
@@ -84,7 +82,7 @@ export const CardGridActions = ({ data }: { data: Cards }) => {
         }}
       </TableRowDropDownToggle>
 
-      {/* <AnsHolidayModalForm defaultValues={defaultValues} formMode='update' externalState={{ state: openEditModal, setter: setOpenEditModal }}></AnsHolidayModalForm> */}
+      <ExampleModalForm defaultValues={defaultValues} formMode='update' externalState={{ state: openEditModal, setter: setOpenEditModal }}></ExampleModalForm>
     </>
   );
 };

@@ -1,21 +1,18 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { MoreVertical } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { BaseDataItem, CardViewProps } from "./ResponsiveTable.interfaces"
 
 export function CardView<T extends BaseDataItem>({
   data,
   fields,
-  actions = [],
   onCardClick,
   title,
   subtitle,
   emptyMessage = "No hay elementos para mostrar",
   loading = false,
+  actionComponent: ActionComp
 }: CardViewProps<T>) {
   if (loading) {
     return (
@@ -51,7 +48,6 @@ export function CardView<T extends BaseDataItem>({
   return (
     <div className="space-y-4">
       {data.map((item) => {
-        const visibleActions = actions.filter((action) => !action.show || action.show(item))
 
         return (
           <Card
@@ -65,36 +61,12 @@ export function CardView<T extends BaseDataItem>({
                   {title && <h3 className="font-semibold text-lg truncate">{title(item)}</h3>}
                   {subtitle && <p className="text-sm text-muted-foreground truncate">{subtitle(item)}</p>}
                 </div>
-
-                {visibleActions.length > 0 && (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                      <Button variant="ghost" size="sm" className="ml-2">
-                        <MoreVertical className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      {visibleActions.map((action, index) => (
-                        <DropdownMenuItem
-                          key={index}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            action.onClick(item)
-                          }}
-                          className={action.variant === "destructive" ? "text-destructive" : ""}
-                        >
-                          {action.icon && <span className="mr-2">{action.icon}</span>}
-                          {action.label}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
+{ActionComp && ActionComp(item)}
+                
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                {fields
-                  .filter((field) => field.priority !== "low" || window.innerWidth > 640)
+                {fields?.filter((field) => field.priority !== "low" || window.innerWidth > 640)
                   .map((field) => {
                     const value = item[field.key]
                     return (
