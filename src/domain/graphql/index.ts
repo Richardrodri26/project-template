@@ -1399,6 +1399,27 @@ export type CardsQueryVariables = Exact<{
 
 export type CardsQuery = { __typename?: 'Query', Cards: Array<{ __typename?: 'Cards', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, description?: string | null, subTitle?: string | null, colorPrincipal?: string | null, colorSegundario?: string | null, isActive: boolean, imageProfile?: { __typename?: 'FileInfo', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, fileName: string, fileExtension: string, fileMode: FileModes, fileMongoId?: string | null, fileUrl?: string | null, transformedFileUrl?: string | null, url: string } | null, cardsEmails: Array<{ __typename?: 'CardsEmails', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, email: string, icono?: string | null }>, cardsPhones: Array<{ __typename?: 'CardsPhones', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, phone: string, icono?: string | null }>, cardsWeb: Array<{ __typename?: 'CardsWeb', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, web: string, icono?: string | null }>, cardsSocial: Array<{ __typename?: 'CardsSocial', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, url: string, typeSocial: string, icono?: string | null }>, cardsAddress: Array<{ __typename?: 'CardsAddress', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, websiteUrl: string, city?: string | null, postalCode?: string | null, country?: string | null, region?: string | null, streetAddress?: string | null }> }>, CardsCount: { __typename?: 'MetadataPagination', totalItems?: number | null, itemsPerPage?: number | null, totalPages?: number | null, currentPage?: number | null } };
 
+export type UpdateCardsMutationVariables = Exact<{
+  updateInput: UpdateCardInput;
+}>;
+
+
+export type UpdateCardsMutation = { __typename?: 'Mutation', updateCards: { __typename?: 'Cards', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, description?: string | null, subTitle?: string | null, colorPrincipal?: string | null, colorSegundario?: string | null, isActive: boolean } };
+
+export type CreateCardFullMutationVariables = Exact<{
+  input: CardsCreateInput;
+}>;
+
+
+export type CreateCardFullMutation = { __typename?: 'Mutation', createCardFull: { __typename?: 'Cards', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, description?: string | null, subTitle?: string | null, colorPrincipal?: string | null, colorSegundario?: string | null, isActive: boolean, imageProfile?: { __typename?: 'FileInfo', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, fileName: string, fileExtension: string, fileMode: FileModes, fileMongoId?: string | null, fileUrl?: string | null, transformedFileUrl?: string | null, url: string } | null, user?: { __typename?: 'User', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, name?: string | null, lastName?: string | null, email: string, identificationType?: UserDocumentTypes | null, identificationNumber?: string | null, dateOfBirth?: any | null, phoneNumber?: string | null, address?: string | null, confirmationCode?: string | null, tokenExpoNotification?: string | null, status: UserStatusTypes, phoneVerification: boolean, emailVerification: boolean, type: UserTypes, fullName: string, file?: { __typename?: 'FileInfo', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, fileName: string, fileExtension: string, fileMode: FileModes, fileMongoId?: string | null, fileUrl?: string | null, transformedFileUrl?: string | null, url: string } | null } | null, cardsEmails: Array<{ __typename?: 'CardsEmails', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, email: string, icono?: string | null }>, cardsPhones: Array<{ __typename?: 'CardsPhones', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, phone: string, icono?: string | null }>, cardsWeb: Array<{ __typename?: 'CardsWeb', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, web: string, icono?: string | null }>, cardsSocial: Array<{ __typename?: 'CardsSocial', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, url: string, typeSocial: string, icono?: string | null }>, cardsAddress: Array<{ __typename?: 'CardsAddress', id: string, createdAt: any, updatedAt: any, deletedAt?: any | null, title?: string | null, websiteUrl: string, city?: string | null, postalCode?: string | null, country?: string | null, region?: string | null, streetAddress?: string | null }> } };
+
+export type RemoveCardsMutationVariables = Exact<{
+  removeCardsId: Scalars['ID']['input'];
+}>;
+
+
+export type RemoveCardsMutation = { __typename?: 'Mutation', removeCards: { __typename?: 'Cards', id: string, title?: string | null } };
+
 
 export const CardsDocument = gql`
     query Cards($orderBy: [FindCardOrderBy!], $where: FindCardWhere, $pagination: Pagination) {
@@ -1520,3 +1541,218 @@ export type CardsQueryHookResult = ReturnType<typeof useCardsQuery>;
 export type CardsLazyQueryHookResult = ReturnType<typeof useCardsLazyQuery>;
 export type CardsSuspenseQueryHookResult = ReturnType<typeof useCardsSuspenseQuery>;
 export type CardsQueryResult = Apollo.QueryResult<CardsQuery, CardsQueryVariables>;
+export const UpdateCardsDocument = gql`
+    mutation UpdateCards($updateInput: UpdateCardInput!) {
+  updateCards(updateInput: $updateInput) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    title
+    description
+    subTitle
+    colorPrincipal
+    colorSegundario
+    isActive
+  }
+}
+    `;
+export type UpdateCardsMutationFn = Apollo.MutationFunction<UpdateCardsMutation, UpdateCardsMutationVariables>;
+
+/**
+ * __useUpdateCardsMutation__
+ *
+ * To run a mutation, you first call `useUpdateCardsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCardsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCardsMutation, { data, loading, error }] = useUpdateCardsMutation({
+ *   variables: {
+ *      updateInput: // value for 'updateInput'
+ *   },
+ * });
+ */
+export function useUpdateCardsMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCardsMutation, UpdateCardsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCardsMutation, UpdateCardsMutationVariables>(UpdateCardsDocument, options);
+      }
+export type UpdateCardsMutationHookResult = ReturnType<typeof useUpdateCardsMutation>;
+export type UpdateCardsMutationResult = Apollo.MutationResult<UpdateCardsMutation>;
+export type UpdateCardsMutationOptions = Apollo.BaseMutationOptions<UpdateCardsMutation, UpdateCardsMutationVariables>;
+export const CreateCardFullDocument = gql`
+    mutation CreateCardFull($input: CardsCreateInput!) {
+  createCardFull(input: $input) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    title
+    description
+    subTitle
+    colorPrincipal
+    colorSegundario
+    isActive
+    imageProfile {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      fileName
+      fileExtension
+      fileMode
+      fileMongoId
+      fileUrl
+      transformedFileUrl
+      url
+    }
+    user {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      name
+      lastName
+      email
+      identificationType
+      identificationNumber
+      dateOfBirth
+      phoneNumber
+      address
+      confirmationCode
+      tokenExpoNotification
+      status
+      phoneVerification
+      emailVerification
+      type
+      file {
+        id
+        createdAt
+        updatedAt
+        deletedAt
+        fileName
+        fileExtension
+        fileMode
+        fileMongoId
+        fileUrl
+        transformedFileUrl
+        url
+      }
+      fullName
+    }
+    cardsEmails {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      email
+      icono
+    }
+    cardsPhones {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      phone
+      icono
+    }
+    cardsWeb {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      web
+      icono
+    }
+    cardsSocial {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      url
+      typeSocial
+      icono
+    }
+    cardsAddress {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      websiteUrl
+      city
+      postalCode
+      country
+      region
+      streetAddress
+    }
+  }
+}
+    `;
+export type CreateCardFullMutationFn = Apollo.MutationFunction<CreateCardFullMutation, CreateCardFullMutationVariables>;
+
+/**
+ * __useCreateCardFullMutation__
+ *
+ * To run a mutation, you first call `useCreateCardFullMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCardFullMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCardFullMutation, { data, loading, error }] = useCreateCardFullMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateCardFullMutation(baseOptions?: Apollo.MutationHookOptions<CreateCardFullMutation, CreateCardFullMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCardFullMutation, CreateCardFullMutationVariables>(CreateCardFullDocument, options);
+      }
+export type CreateCardFullMutationHookResult = ReturnType<typeof useCreateCardFullMutation>;
+export type CreateCardFullMutationResult = Apollo.MutationResult<CreateCardFullMutation>;
+export type CreateCardFullMutationOptions = Apollo.BaseMutationOptions<CreateCardFullMutation, CreateCardFullMutationVariables>;
+export const RemoveCardsDocument = gql`
+    mutation RemoveCards($removeCardsId: ID!) {
+  removeCards(id: $removeCardsId) {
+    id
+    title
+  }
+}
+    `;
+export type RemoveCardsMutationFn = Apollo.MutationFunction<RemoveCardsMutation, RemoveCardsMutationVariables>;
+
+/**
+ * __useRemoveCardsMutation__
+ *
+ * To run a mutation, you first call `useRemoveCardsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveCardsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeCardsMutation, { data, loading, error }] = useRemoveCardsMutation({
+ *   variables: {
+ *      removeCardsId: // value for 'removeCardsId'
+ *   },
+ * });
+ */
+export function useRemoveCardsMutation(baseOptions?: Apollo.MutationHookOptions<RemoveCardsMutation, RemoveCardsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveCardsMutation, RemoveCardsMutationVariables>(RemoveCardsDocument, options);
+      }
+export type RemoveCardsMutationHookResult = ReturnType<typeof useRemoveCardsMutation>;
+export type RemoveCardsMutationResult = Apollo.MutationResult<RemoveCardsMutation>;
+export type RemoveCardsMutationOptions = Apollo.BaseMutationOptions<RemoveCardsMutation, RemoveCardsMutationVariables>;

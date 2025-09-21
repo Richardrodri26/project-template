@@ -1,10 +1,11 @@
 import { TableRowDropDownToggle } from "@/components/DataTable/TableToggle";
-import { useAlert } from "@/components/PromiseAlert";
 import type { Cards } from "@/domain/graphql";
-import { EditIcon } from "lucide-react";
+import { EditIcon, DeleteIcon } from "lucide-react";
 import { useState } from "react";
 import { ExampleModalForm } from "../Modals/ExampleFormModal";
-import { updateExampleSchema, type UpdateExampleSchemaType } from '../../schema';
+import type { UpdateExampleSchemaType } from '../../schema';
+import { useRemoveExample } from '@/features/Example/hooks/useRemoveExample';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 export const CardGridActions = ({ data }: { data: Cards }) => {
@@ -12,10 +13,21 @@ export const CardGridActions = ({ data }: { data: Cards }) => {
   // const { mutateAsync: removeAction, isPending: isPendingRemoveAction } = useRemoveAnsHolidayItem();
   const [openEditModal, setOpenEditModal] = useState(false);
 
-  const alert = useAlert();
+  
+  const removeMutation = useRemoveExample();
+  const queryClient = useQueryClient();
 
   const handleOpenEditModal = () => {
     setOpenEditModal(true);
+  };
+
+  const handleRemoveItem = async () => {
+    try {
+      await removeMutation.mutateAsync({ removeCardsId: data.id });
+      queryClient.invalidateQueries({ queryKey: ['getExampleData'] });
+    } catch (e) {
+      // could show an error alert here
+    }
   };
 
   // const handleDisableItem = async () => {
@@ -67,6 +79,10 @@ export const CardGridActions = ({ data }: { data: Cards }) => {
             <>
               <Item onClick={handleOpenEditModal}>
                 <EditIcon className='fill-tundora' /> Modificar
+              </Item>
+
+              <Item onClick={handleRemoveItem}>
+                <DeleteIcon className='fill-tundora' /> Eliminar
               </Item>
 
               {/* <Item onClick={handleDisableItem} disabled={isPendingAction}>

@@ -13,7 +13,7 @@ interface IExampleModalFormProps {
   defaultValues?: Partial<UpdateExampleSchemaType>;
 }
 
-export const ExampleModalForm = ({ asChild, externalState, children, formMode, defaultValues }: IExampleModalFormProps) => {
+export const ExampleModalForm = ({ asChild = true, externalState, children, formMode, defaultValues }: IExampleModalFormProps) => {
   const [defaultIsOpen, setDefaultIsOpen] = useState(false);
 
   const { setter, state } = externalState ? externalState : { state: defaultIsOpen, setter: setDefaultIsOpen };

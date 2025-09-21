@@ -81,3 +81,138 @@ query Cards($orderBy: [FindCardOrderBy!], $where: FindCardWhere, $pagination: Pa
     currentPage
   }
 }
+
+
+mutation UpdateCards($updateInput: UpdateCardInput!) {
+  updateCards(updateInput: $updateInput) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    title
+    description
+    subTitle
+    colorPrincipal
+    colorSegundario
+    isActive
+  }
+}
+
+mutation CreateCardFull($input: CardsCreateInput!) {
+  createCardFull(input: $input) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    title
+    description
+    subTitle
+    colorPrincipal
+    colorSegundario
+    isActive
+    imageProfile {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      fileName
+      fileExtension
+      fileMode
+      fileMongoId
+      fileUrl
+      transformedFileUrl
+      url
+    }
+    user {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      name
+      lastName
+      email
+      identificationType
+      identificationNumber
+      dateOfBirth
+      phoneNumber
+      address
+      confirmationCode
+      tokenExpoNotification
+      status
+      phoneVerification
+      emailVerification
+      type
+      file {
+        id
+        createdAt
+        updatedAt
+        deletedAt
+        fileName
+        fileExtension
+        fileMode
+        fileMongoId
+        fileUrl
+        transformedFileUrl
+        url
+      }
+      fullName
+    }
+    cardsEmails {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      email
+      icono
+    }
+    cardsPhones {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      phone
+      icono
+    }
+    cardsWeb {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      web
+      icono
+    }
+    cardsSocial {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      url
+      typeSocial
+      icono
+    }
+    cardsAddress {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      title
+      websiteUrl
+      city
+      postalCode
+      country
+      region
+      streetAddress
+    }
+  }
+}
+
+mutation RemoveCards($removeCardsId: ID!) {
+  removeCards(id: $removeCardsId) {
+    id
+    title
+  }
+}

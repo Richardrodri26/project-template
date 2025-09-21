@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 export const publicGraph = new GraphQLClient(environments().VITE_URL_BACKEND_API + 'graphql');
 
 export async function appFetcher<T>(query: DocumentNode, variables?: OperationVariables) {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3ZGM1ZDliLTNlNzItNDhjZS1iNTNmLWUxOTNmN2QyMWQ0YiIsImhhc0F1dGhvcml6ZWQiOnRydWUsImlhdCI6MTc1NDg2MTY3MSwiZXhwIjoxNzU0OTQ4MDcxfQ.HfzlMtZRKkT3Ft5r_0HtwfVeqWS1Fm2iBGZ-Wwb9IN8';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhlZjFkYWExLTA4OWUtNGZkYi1hZTQ3LTk0YTA2YThkNzYyMiIsImhhc0F1dGhvcml6ZWQiOnRydWUsImlhdCI6MTc1ODQ4MjczNywiZXhwIjoxNzU4NTY5MTM3fQ.hOc9IeaSa65JaBCUvmYHb6Ztufe76lyd6iWSx9TRvC8';
 
   if (token) {
     publicGraph.setHeader('Authorization', 'Bearer ' + token);
