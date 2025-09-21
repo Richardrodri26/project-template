@@ -16,7 +16,7 @@ export const cardsColumns = [
     maxSize: 50,
   }),
   cardColumnHelper.accessor('description', {
-    id: 'descripcion',
+    id: 'description',
     meta: {
       columnLabel: 'Description',
       filterType: 'TextFilter',
@@ -25,6 +25,18 @@ export const cardsColumns = [
       },
     },
     header: ({ column }) => <DisplayThMenu label={'Description'} {...column}></DisplayThMenu>,
+    cell: ({ getValue }) => <TdLongText>{getValue() || 'N/A'}</TdLongText>,
+  }),
+  cardColumnHelper.accessor(row => row.title, {
+    id: 'title',
+    meta: {
+      columnLabel: 'Title',
+      filterType: 'TextFilter',
+      headerProps: {
+        style: { width: 200, minWidth: 150 },
+      },
+    },
+    header: ({ column }) => <DisplayThMenu label={'Title'} {...column}></DisplayThMenu>,
     cell: ({ getValue }) => <TdLongText>{getValue() || 'N/A'}</TdLongText>,
   }),
   cardColumnHelper.display({

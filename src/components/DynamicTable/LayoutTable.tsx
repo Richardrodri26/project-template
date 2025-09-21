@@ -12,10 +12,23 @@ function ContextDataTable({ className, containerClassName }: { className?: strin
   const [actionComponent] = useTableContext(state => state.actionComponent);
   const cardFields = extractCardFields(table?.getAllColumns() ?? [], true)
 
+  // Determinar dinámicamente el campo principal y secundario usando cardFields
+
 
   if (!table) return <>Sin provider tonoto 💀</>;
 
-  return <ResponsiveTable actionComponent={actionComponent} id={''} data={data} cardFields={cardFields}  table={table} columns={table.getAllFlatColumns()} containerClassName={containerClassName} className={className} isLoading={isLoading} />;
+  return <ResponsiveTable
+    actionComponent={actionComponent}
+    id={''}
+    data={data}
+    cardFields={cardFields}
+    table={table}
+    columns={table.getAllFlatColumns()}
+    containerClassName={containerClassName}
+    className={className}
+    isLoading={isLoading}
+    
+  />;
   // return <DataTable table={table} columns={table.getAllFlatColumns()} containerClassName={containerClassName} className={className} isLoading={isLoading} />;
 }
 

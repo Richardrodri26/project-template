@@ -68,7 +68,8 @@ export const CardGridActions = ({ data }: { data: Cards }) => {
 
   const defaultValues: Partial<UpdateExampleSchemaType> = {
     id: String(data.id),
-    name: String(data.description),
+    name: String(data.title ?? ''),
+    description: String(data.description ?? ''),
   };
 
   return (

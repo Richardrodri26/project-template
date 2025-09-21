@@ -34,7 +34,6 @@ function SubscribeButton({ label, className, icon, variants }: { label: string; 
   const form = useFormContext();
   return (
     <form.Subscribe selector={state => {
-      console.log('state', state)
       return [state.isSubmitting, state.isValid]
     }}>
       {([isSubmitting, isValid]) => (

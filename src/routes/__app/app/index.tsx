@@ -15,7 +15,7 @@ function RouteComponent() {
   return <ContentLayout title="Home">
 
 
-    <div>
+    <div className='mb-4 flex w-full justify-end'>
       <ExampleModalForm formMode='create'>
         <Button variant='default'>Crear nuevo ejemplo</Button>
       </ExampleModalForm>
